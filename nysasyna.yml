@@ -19,7 +19,7 @@
             #kubectl delete svc `kubectl get svc | grep sampleapp | awk '{print $1}'`
          else
             echo "Creating App Services"
-            kubectl expose deployment sampleapp --name sampleapp --type NodePort --port 8080 --target-port 8081
+            kubectl expose deployment sampleapp --name sampleapp --type NodePort --port 80 --target-port 8080
          fi
     - name: increase replicas 
       shell: kubectl scale deploy sampleapp --replicas=2
@@ -27,4 +27,4 @@
     #- name: deploy app
     #  shell: kubectl create deployment sampleapp --image=sibinvin/tango:latest
     #- name: deploy service
-    #  shell: kubectl expose deployment sampleapp --name sampleapp --type NodePort --port 8080 --target-port 8081
+    #  shell: kubectl expose deployment sampleapp --name sampleapp --type NodePort --port 80 --target-port 8080
