@@ -10,7 +10,7 @@
             kubectl create deployment gapp1 --image=sibinvin/tango:latest --image-pull-secrets=mysecret
          else 
             echo "Deploying gapp1 Application"
-            kubectl create deployment gapp1 --image=sibinvin/tango:latest --image-pull-secrets=mysecret
+            kubectl create deployment gapp1 --image=sibinvin/tango:latest
          fi
     - name: deploying service
       shell: |
