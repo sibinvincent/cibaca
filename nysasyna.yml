@@ -10,7 +10,7 @@
             kubectl create deployment gapp1 --image=sibinvin/tango:latest --overrides='{ "apiVersion": "v1", "spec": {"imagePullSecrets": [{"name": "mysecret"}]} }'
          else 
             echo "Deploying gapp1 Application"
-            kubectl create deployment gapp1 --image=sibinvin/tango:latest --overrides='{ "apiVersion": "v1", "spec": {"imagePullSecrets": [{"name": "<secret>"}]} }'
+            kubectl create deployment gapp1 --image=sibinvin/tango:latest --overrides='{ "apiVersion": "v1", "spec": {"imagePullSecrets": [{"name": "mysecret"}]} }'
          fi
     - name: deploying service
       shell: |
