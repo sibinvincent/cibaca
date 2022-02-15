@@ -19,7 +19,7 @@
             #kubectl delete svc `kubectl get svc | grep gapp1 | awk '{print $1}'`
          else
             echo "Creating App Services"
-            kubectl expose deployment gapp1 --name gapp1 -- Secret mysecret --type NodePort --port 8080 --target-port 80
+            kubectl expose deployment gapp1 --name gapp1 --type NodePort --port 8080 --target-port 80
          fi
     - name: increase replicas 
       shell: kubectl scale deploy gapp1 --replicas=2
