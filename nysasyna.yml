@@ -7,7 +7,7 @@
             echo "deleteing previous application deployment"
             kubectl delete deployment `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep gapp1`
             echo "creating new application deployment"
-            kubectl create deployment gapp1 --image=sibinvin/tango:latest --imagePullSecrets=mysecret
+            kubectl create deployment gapp1 --image=sibinvin/tango:latest,imagePullSecrets=mysecret
          else 
             echo "Deploying gapp1 Application"
             kubectl create deployment gapp1 --image=sibinvin/tango:latest
