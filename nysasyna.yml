@@ -3,28 +3,28 @@
   tasks: 
     - name: Deploying Application pods...
       shell: | 
-         if [ `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep gapp | wc -l` -gt 0 ]; then  
+         if [ `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep gapp1 | wc -l` -gt 0 ]; then  
             echo "deleteing previous application deployment"
-            kubectl delete deployment `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep gapp`
+            kubectl delete deployment `kubectl get deployment | grep -v NAME | awk '{print $1}' | grep gapp1`
             echo "creating new application deployment"
-            kubectl create deployment gapp --image=sibinvin/tango:latest
+            kubectl create deployment gapp1 --image=sibinvin/tango:latest
          else 
-            echo "Deploying gapp Application"
-            kubectl create deployment gapp --image=sibinvin/tango:latest
+            echo "Deploying gapp1 Application"
+            kubectl create deployment gapp1 --image=sibinvin/tango:latest
          fi
     - name: deploying service
       shell: |
-         if [ `kubectl get svc | grep gapp  | awk '{print $1}' | wc -l` -gt 0 ]; then
+         if [ `kubectl get svc | grep gapp1  | awk '{print $1}' | wc -l` -gt 0 ]; then
             echo "app service found, No actions taken"
-            #kubectl delete svc `kubectl get svc | grep gapp | awk '{print $1}'`
+            #kubectl delete svc `kubectl get svc | grep gapp1 | awk '{print $1}'`
          else
             echo "Creating App Services"
-            kubectl expose deployment gapp --name gapp --type NodePort --port 80 --target-port 8080
+            kubectl expose deployment gapp1 --name gapp1 --type NodePort --port 8080 --target-port 80
          fi
     - name: increase replicas 
-      shell: kubectl scale deploy gapp --replicas=2
+      shell: kubectl scale deploy gapp1 --replicas=2
       
     #- name: deploy app
-    #  shell: kubectl create deployment gapp --image=sibinvin/tango:latest
+    #  shell: kubectl create deployment gapp1 --image=sibinvin/tango:latest
     #- name: deploy service
-    #  shell: kubectl expose deployment gapp --name gapp --type NodePort --port 80 --target-port 8080
+    #  shell: kubectl expose deployment gapp1 --name gapp1 --type NodePort --port 8080 --target-port 80
